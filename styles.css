@@ -1,0 +1,469 @@
+/* ===================================================
+   VARIABLES GLOBALES: Colores, efectos y transiciones
+   =================================================== */
+:root {
+  --primary: #4ec9ff;
+  --primary-glow: rgba(78, 201, 255, 0.4);
+  --accent: #92ff4e;
+  --accent-hover: #3fb9ed;
+  --bg-body: #0f0f0f;
+  --bg-card: #181818;
+  --bg-dark: #0c0c0c;
+  --bg-overlay: rgba(0, 0, 0, 0.9);
+  --text-main: #e8e8e8;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 14px;
+}
+
+/* CONFIGURACIÓN BASE */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+/* ===================================================
+   EFECTO LETTERGLITCH (FONDO DINÁMICO)
+   =================================================== */
+.glitch-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  /* Detrás de todo el contenido */
+  background-color: #000;
+  overflow: hidden;
+  pointer-events: none;
+  /* Permite hacer clic en los elementos de arriba */
+}
+
+.glitch-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Capas de sombreado (Vignette) para profundidad */
+.glitch-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Outer Vignette: Sombras en los bordes */
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
+  z-index: 1;
+}
+
+.glitch-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Center Vignette: Oscurece el centro para resaltar el contenido */
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+  z-index: 2;
+}
+
+/* ===================================================
+   HEADER Y NAVEGACIÓN
+   =================================================== */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--bg-dark);
+  border-bottom: 2px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 180px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-header {
+  height: 110px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-principal {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  color: #888;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: var(--transition);
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+#carrito-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid var(--primary);
+  background: rgba(78, 201, 255, 0.1);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#carrito-contador {
+  background: var(--primary);
+  color: #000;
+  padding: 2px 7px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+/* ===================================================
+   CATÁLOGO Y CARDS
+   =================================================== */
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border-color: #333;
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  background: #000;
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.precio-card {
+  color: var(--primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 20px;
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.precio-card:not(:empty) {
+  line-height: 1.2;
+}
+
+/* ===================================================
+   DISEÑO ESPECÍFICO DE INICIO (CATEGORÍAS)
+   =================================================== */
+.glass-catalog {
+  background-color: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.card-categoria {
+  cursor: pointer;
+  padding-bottom: 25px;
+}
+
+.card-categoria h3 {
+  color: var(--primary);
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.card-categoria:hover {
+  border-color: var(--primary);
+  background: #1d1d1d;
+}
+
+/* ===================================================
+   CARRITO (SIDEBAR)
+   =================================================== */
+.carrito {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: min(400px, 100%);
+  height: 100%;
+  background: #0a0a0a;
+  z-index: 2000;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--primary);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.9);
+}
+
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #222;
+}
+
+.item-info {
+  text-align: left;
+}
+
+.item-nombre {
+  display: block;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.item-precio {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.btn-qty {
+  background: #333;
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.qty-num {
+  margin: 0 10px;
+  font-weight: 700;
+}
+
+.carrito-total {
+  margin: 25px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  color: var(--accent);
+}
+
+/* ===================================================
+   BOTONES GENERALES
+   =================================================== */
+.btn {
+  display: block;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.03);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: auto;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  margin-top: 10px;
+}
+
+/* ===================================================
+   VISOR (MODAL)
+   =================================================== */
+.visor {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1500;
+  padding: 20px;
+}
+
+.visor-contenido {
+  background: #111;
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  border-radius: 24px;
+  position: relative;
+  border: 1px solid #222;
+}
+
+.visor-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  border-radius: 15px;
+  background: #000;
+}
+
+.visor-miniaturas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.visor-miniaturas img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.4;
+  border: 2px solid transparent;
+}
+
+.visor-miniaturas img.active {
+  opacity: 1;
+  border-color: var(--primary);
+}
+
+.visor-btn {
+  position: absolute;
+  top: 35%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
+
+.visor-cerrar {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 35px;
+  cursor: pointer;
+  color: var(--primary);
+  border: none;
+  background: none;
+}
+
+.visor-descripcion {
+  margin: 15px 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.visor-stock {
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* REQUISITOS DE RESPONSIVIDAD BÁSICA */
+@media (max-width: 600px) {
+  header {
+    min-height: 160px;
+  }
+
+  .logo-header {
+    height: 80px;
+  }
+
+  .nav-principal {
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+  }
+}

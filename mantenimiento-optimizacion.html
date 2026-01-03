@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento | STV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="img/STV_logo.png" alt="Logotipo STV" class="logo-header" loading="lazy">
+            </a>
+            <nav class="nav-principal">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="desarrollo-web.html" class="nav-link">Desarrollo Web</a>
+                <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
+                <a href="sistemas-automatizacion.html" class="nav-link">Sistemas</a>
+                <a href="mantenimiento-optimizacion.html" class="nav-link active">Mantenimiento</a>
+            </nav>
+        </div>
+        <button id="carrito-btn" aria-label="Ver carrito">
+            🛒 <span id="carrito-contador">0</span>
+        </button>
+    </header>
+
+    <main>
+        <div style="text-align: center; padding-top: 30px;">
+            <h1>Mantenimiento y Optimización</h1>
+            <p>Haz clic en un servicio para ver detalles y contratar</p>
+        </div>
+        <section id="catalogo" class="catalogo"></section>
+    </main>
+
+    <aside id="carrito" class="carrito oculto">
+        <h2>Tu Carrito</h2>
+        <div id="carrito-items"></div>
+        <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
+        <div class="carrito-acciones">
+            <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
+            <button id="carrito-cerrar" class="btn btn-full btn-outline">Cerrar</button>
+        </div>
+    </aside>
+
+    <!-- El VISOR ahora está activo en esta página -->
+    <div id="visor" class="visor oculto">
+        <div class="visor-contenido">
+            <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar">&times;</button>
+            <div class="visor-media">
+                <img id="visor-img" class="visor-img" alt="Vista previa">
+                <button id="visor-prev" class="visor-btn prev">◀</button>
+                <button id="visor-next" class="visor-btn next">▶</button>
+            </div>
+            <div class="visor-info">
+                <div id="visor-descripcion" class="visor-descripcion"></div>
+                <div id="visor-stock" class="visor-stock"></div>
+                <div id="visor-miniaturas" class="visor-miniaturas"></div>
+                <button id="btn-agregar-carrito-float" class="btn btn-full">➕ Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
