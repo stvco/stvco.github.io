@@ -12,12 +12,22 @@
   --bg-overlay: rgba(0, 0, 0, 0.9);
   --text-main: #e8e8e8;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius: 14px;
+  --radius: 0.875rem;
+  /* 14px */
+  --header-height-desktop: 11.25rem;
+  /* 180px */
+  --header-height-mobile: 5rem;
+  /* 80px */
 }
 
 /* CONFIGURACIÓN BASE */
 * {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  /* 16px base */
 }
 
 body {
@@ -26,16 +36,20 @@ body {
   background: var(--bg-body);
   color: var(--text-main);
   overflow-x: hidden;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Barra de desplazamiento */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0.375rem;
+  /* 6px */
 }
 
 ::-webkit-scrollbar-thumb {
   background: #333;
-  border-radius: 10px;
+  border-radius: 0.625rem;
+  /* 10px */
 }
 
 /* ===================================================
@@ -48,11 +62,9 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  /* Detrás de todo el contenido */
   background-color: #000;
   overflow: hidden;
   pointer-events: none;
-  /* Permite hacer clic en los elementos de arriba */
 }
 
 .glitch-container canvas {
@@ -61,12 +73,10 @@ body {
   height: 100%;
 }
 
-/* Capas de sombreado (Vignette) para profundidad */
 .glitch-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* Outer Vignette: Sombras en los bordes */
   background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
   z-index: 1;
 }
@@ -75,7 +85,6 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  /* Center Vignette: Oscurece el centro para resaltar el contenido */
   background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
   z-index: 2;
 }
@@ -87,31 +96,48 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
+  /* 10px 20px */
   background: var(--bg-dark);
   border-bottom: 2px solid var(--primary);
   position: sticky;
   top: 0;
   z-index: 100;
-  min-height: 180px;
+  min-height: var(--header-height-desktop);
+  transition: min-height 0.3s ease;
 }
 
 .header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
+  /* 15px ~= 0.93rem, rounded to 1rem */
+  width: 100%;
+  max-width: 1200px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
 
 .logo-header {
-  height: 110px;
+  height: 6.875rem;
+  /* 110px */
   width: auto;
   object-fit: contain;
+  transition: height 0.3s ease;
 }
 
+/* Nav Desktop */
 .nav-principal {
   display: flex;
-  gap: 25px;
+  gap: 1.5rem;
+  /* 25px */
 }
 
 .nav-link {
@@ -120,9 +146,11 @@ header {
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09rem;
+  /* 1.5px */
   transition: var(--transition);
-  padding-bottom: 5px;
+  padding: 0.5rem;
+  /* Increased touch target padding */
   border-bottom: 2px solid transparent;
 }
 
@@ -132,28 +160,58 @@ header {
   border-bottom-color: var(--primary);
 }
 
+/* Menu Toggle Button (Hidden on Desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.close-menu {
+  display: none;
+  /* Hidden on desktop */
+}
+
+/* Carrito Button */
 #carrito-btn {
   position: absolute;
-  right: 20px;
+  right: 1.25rem;
+  /* 20px */
   top: 50%;
   transform: translateY(-50%);
   border: 2px solid var(--primary);
   background: rgba(78, 201, 255, 0.1);
   color: #fff;
-  padding: 10px 14px;
-  border-radius: 12px;
+  padding: 0.625rem 0.875rem;
+  /* 10px 14px */
+  border-radius: 0.75rem;
+  /* 12px */
   cursor: pointer;
   transition: var(--transition);
+  z-index: 101;
 }
 
 #carrito-contador {
   background: var(--primary);
   color: #000;
-  padding: 2px 7px;
+  padding: 0.125rem 0.4375rem;
+  /* 2px 7px */
   border-radius: 50px;
   font-weight: 800;
   font-size: 0.8rem;
-  margin-left: 5px;
+  margin-left: 0.3125rem;
+  /* 5px */
 }
 
 /* ===================================================
@@ -161,16 +219,20 @@ header {
    =================================================== */
 .catalogo {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 30px;
-  padding: 40px 20px;
+  /* Optimized minmax for responsiveness: 260px -> 240px to fit smaller screens better */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.875rem;
+  /* 30px */
+  padding: 2.5rem 1.25rem;
+  /* 40px 20px */
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .card {
   background: var(--bg-card);
-  padding: 20px;
+  padding: 1.25rem;
+  /* 20px */
   border-radius: var(--radius);
   transition: var(--transition);
   text-align: center;
@@ -181,8 +243,9 @@ header {
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transform: translateY(-0.5rem);
+  /* -8px */
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.6);
   border-color: #333;
 }
 
@@ -190,14 +253,17 @@ header {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 0.625rem;
+  /* 10px */
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
+  /* 15px */
   background: #000;
 }
 
 .card h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 0.625rem 0;
+  /* 10px */
   font-size: 1.1rem;
   color: #fff;
 }
@@ -207,7 +273,8 @@ header {
   font-size: 1.15rem;
   font-weight: 700;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+  /* 20px */
   min-height: 2.5em;
   display: flex;
   align-items: center;
@@ -226,17 +293,20 @@ header {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 1.25rem;
+  /* 20px */
 }
 
 .card-categoria {
   cursor: pointer;
-  padding-bottom: 25px;
+  padding-bottom: 1.5625rem;
+  /* 25px */
 }
 
 .card-categoria h3 {
   color: var(--primary);
-  margin-top: 10px;
+  margin-top: 0.625rem;
+  /* 10px */
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -254,22 +324,32 @@ header {
   position: fixed;
   right: 0;
   top: 0;
-  width: min(400px, 100%);
+  width: min(25rem, 100%);
+  /* 400px or 100% */
   height: 100%;
   background: #0a0a0a;
   z-index: 2000;
-  padding: 30px;
+  padding: 1.875rem;
+  /* 30px */
   display: flex;
   flex-direction: column;
   border-left: 2px solid var(--primary);
   box-shadow: -15px 0 40px rgba(0, 0, 0, 0.9);
+  transition: transform 0.3s ease;
+}
+
+.carrito.oculto {
+  display: flex !important;
+  /* Overrule display:none to use transform */
+  transform: translateX(100%);
 }
 
 .carrito-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding: 0.9375rem 0;
+  /* 15px */
   border-bottom: 1px solid #222;
 }
 
@@ -292,19 +372,25 @@ header {
   background: #333;
   color: #fff;
   border: none;
-  width: 28px;
-  height: 28px;
+  width: 2rem;
+  /* 32px - bigger touch target */
+  height: 2rem;
   cursor: pointer;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 
 .qty-num {
-  margin: 0 10px;
+  margin: 0 0.625rem;
   font-weight: 700;
 }
 
 .carrito-total {
-  margin: 25px 0;
+  margin: 1.5625rem 0;
+  /* 25px */
   font-size: 1.5rem;
   font-weight: 700;
   display: flex;
@@ -320,14 +406,17 @@ header {
   background: var(--accent);
   color: #000;
   border: none;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 1rem;
+  /* Increase padding for touch */
+  border-radius: 0.625rem;
+  /* 10px */
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
   text-align: center;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  /* Slightly larger text */
 }
 
 .btn:hover {
@@ -344,7 +433,7 @@ header {
   background: transparent;
   color: #fff;
   border: 1px solid #444;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 /* ===================================================
@@ -359,39 +448,51 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 1500;
-  padding: 20px;
+  padding: 1.25rem;
+}
+
+.visor.oculto {
+  display: none !important;
 }
 
 .visor-contenido {
   background: #111;
   width: 100%;
   max-width: 480px;
-  padding: 30px;
-  border-radius: 24px;
+  padding: 1.875rem;
+  /* 30px */
+  border-radius: 1.5rem;
+  /* 24px */
   position: relative;
   border: 1px solid #222;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .visor-img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
+  /* 15px */
   background: #000;
 }
 
 .visor-miniaturas {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
+  /* 12px */
   justify-content: center;
-  margin: 20px 0;
+  margin: 1.25rem 0;
+  flex-wrap: wrap;
 }
 
 .visor-miniaturas img {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  /* 60px */
+  height: 3.75rem;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   opacity: 0.4;
   border: 2px solid transparent;
@@ -404,66 +505,178 @@ header {
 
 .visor-btn {
   position: absolute;
-  top: 35%;
+  top: 40%;
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid var(--primary);
   color: var(--primary);
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 3rem;
+  /* 48px - touch friendly */
+  height: 3rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 10;
 }
 
 .prev {
-  left: 15px;
+  left: 0.625rem;
 }
 
 .next {
-  right: 15px;
+  right: 0.625rem;
 }
 
 .visor-cerrar {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 35px;
+  top: 0.625rem;
+  right: 0.9375rem;
+  font-size: 2.5rem;
   cursor: pointer;
   color: var(--primary);
   border: none;
   background: none;
+  padding: 0.5rem;
+  /* Increase touch area */
+  line-height: 1;
 }
 
 .visor-descripcion {
-  margin: 15px 0;
+  margin: 0.9375rem 0;
   line-height: 1.5;
   font-size: 0.95rem;
 }
 
 .visor-stock {
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   display: block;
 }
 
-.oculto {
-  display: none !important;
-}
+/* ===================================================
+   MEDIA QUERIES (MOBILE)
+   =================================================== */
+@media (max-width: 768px) {
+  :root {
+    --header-height-mobile: 60px;
+  }
 
-/* REQUISITOS DE RESPONSIVIDAD BÁSICA */
-@media (max-width: 600px) {
   header {
-    min-height: 160px;
+    min-height: auto;
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .header-top {
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
   }
 
   .logo-header {
-    height: 80px;
+    height: 50px;
   }
 
+  /* Mobile Navigation Menu */
   .nav-principal {
-    gap: 15px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* Hidden off-screen right */
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+  }
+
+  .nav-principal.open {
+    right: 0;
+  }
+
+  /* Close button inside mobile menu */
+  .close-menu {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 2.5rem;
+    cursor: pointer;
   }
 
   .nav-link {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+
+  /* Hamburger Menu Button Visible */
+  .menu-toggle {
+    display: block;
+    margin-right: 60px;
+    /* Space for the cart button which is absolute */
+  }
+
+  /* Adjust Cart Button position */
+  #carrito-btn {
+    top: 35px;
+    /* Align with header top center vertically approx */
+    right: 15px;
+    transform: translateY(-50%);
+    padding: 8px 12px;
+  }
+
+  /* Cart sidebar full width */
+  .carrito {
+    width: 100%;
+  }
+
+  /* Modal Adjustments */
+  .visor-contenido {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .visor-btn {
+    width: 44px;
+    height: 44px;
+    top: 30%;
+  }
+
+  /* Grid */
+  .catalogo {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    /* Single column on very small focus or fluid */
+    gap: 20px;
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .catalogo {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }

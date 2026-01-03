@@ -356,3 +356,42 @@ const esInicio = window.location.pathname.endsWith('index.html') || window.locat
 if (esInicio) {
     initLetterGlitch();
 }
+
+// ==========================================
+//   LOGICA MENU MOBILE
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const closeMenu = document.querySelector('.close-menu');
+    const navPrincipal = document.querySelector('.nav-principal');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (menuToggle && navPrincipal) {
+        menuToggle.addEventListener('click', () => {
+            navPrincipal.classList.add('open');
+        });
+    }
+
+    if (closeMenu && navPrincipal) {
+        closeMenu.addEventListener('click', () => {
+            navPrincipal.classList.remove('open');
+        });
+    }
+
+    // Cerrar menú al hacer clic en un enlace
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navPrincipal) navPrincipal.classList.remove('open');
+        });
+    });
+
+    // Cerrar menú al hacer click fuera (opcional)
+    document.addEventListener('click', (e) => {
+        if (navPrincipal &&
+            navPrincipal.classList.contains('open') &&
+            !navPrincipal.contains(e.target) &&
+            !menuToggle.contains(e.target)) {
+            navPrincipal.classList.remove('open');
+        }
+    });
+});
