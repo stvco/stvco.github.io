@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="STV - Soluciones Tecnológicas Vargas. Catálogo de servicios tecnológicos.">
+  <meta name="description"
+    content="STV - Soluciones Tecnológicas Vargas. Catálogo de servicios tecnológicos: Desarrollo web, Soporte técnico, Mantenimiento y Automatización.">
   <title>STV | Inicio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,30 +17,30 @@
 <body>
 
   <!-- Contenedor para el efecto LetterGlitch (Solo se activará en Inicio) -->
-  <div id="glitch-canvas-container" class="glitch-container"></div>
+  <div id="glitch-canvas-container" class="glitch-container" aria-hidden="true"></div>
 
   <header>
     <div class="header-content">
       <div class="header-top">
-        <a href="index.html" class="logo-link">
-          <img src="img/STV_logo.png" alt="Logotipo STV" class="logo-header" loading="lazy">
+        <a href="index.html" class="logo-link" aria-label="Ir a Inicio">
+          <img src="img/STV_logo.png" alt="Logotipo Soluciones Tecnológicas Vargas" class="logo-header" loading="lazy">
         </a>
-        <button class="menu-toggle" aria-label="Abrir menú">
+        <button class="menu-toggle" aria-label="Abrir menú de navegación">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </button>
       </div>
-      <nav class="nav-principal" id="nav-principal">
+      <nav class="nav-principal" id="nav-principal" aria-label="Menú principal">
         <button class="close-menu" aria-label="Cerrar menú">&times;</button>
-        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="index.html" class="nav-link active" aria-current="page">Inicio</a>
         <a href="desarrollo-web.html" class="nav-link">Desarrollo Web</a>
         <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
         <a href="sistemas-automatizacion.html" class="nav-link">Sistemas</a>
         <a href="mantenimiento-optimizacion.html" class="nav-link">Mantenimiento</a>
       </nav>
     </div>
-    <button id="carrito-btn" aria-label="Ver carrito">
+    <button id="carrito-btn" aria-label="Ver carrito de compras">
       🛒 <span id="carrito-contador">0</span>
     </button>
   </header>
@@ -49,17 +50,16 @@
       <h1>Nuestras Categorías</h1>
       <p>Selecciona un área para ver los servicios disponibles</p>
     </div>
-    <section id="catalogo" class="catalogo glass-catalog"></section>
+    <section id="catalogo" class="catalogo glass-catalog" aria-label="Catálogo de categorías"></section>
   </main>
 
-  <!-- Carrito oculto por defecto en inicio (se mantiene por consistencia del script) -->
-  <aside id="carrito" class="carrito oculto">
+  <aside id="carrito" class="carrito oculto" aria-label="Carrito de compras">
     <h2>Tu Carrito</h2>
     <div id="carrito-items"></div>
     <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
     <div class="carrito-acciones">
       <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
-      <button id="carrito-cerrar" class="btn btn-full btn-outline">Cerrar</button>
+      <button id="carrito-cerrar" class="btn btn-full btn-outline" aria-label="Cerrar carrito">Cerrar</button>
     </div>
   </aside>
 

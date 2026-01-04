@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Servicios de Desarrollo Web por Soluciones Tecnológicas Vargas. Landing pages, e-commerce, sitios autogestivos y más.">
   <title>Desarrollo Web | STV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,48 +18,56 @@
 
   <header>
     <div class="header-content">
-      <a href="index.html">
-        <img src="img/STV_logo.png" alt="Logotipo STV" class="logo-header" loading="lazy">
-      </a>
-      <nav class="nav-principal">
+      <div class="header-top"> <!-- Added header-top wrapper for consistency with index -->
+        <a href="index.html" aria-label="Ir a Inicio">
+          <img src="img/STV_logo.png" alt="Logotipo Soluciones Tecnológicas Vargas" class="logo-header" loading="lazy">
+        </a>
+        <!-- Mobile menu toggle added for consistency if needed by script, though previously missing in original dump but might be needed for mobile nav to work properly on subpages -->
+        <button class="menu-toggle" aria-label="Abrir menú de navegación">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+      <nav class="nav-principal" id="nav-principal" aria-label="Menú principal"> <!-- Added ID for JS consistency -->
+        <button class="close-menu" aria-label="Cerrar menú">&times;</button> <!-- Link close button -->
         <a href="index.html" class="nav-link">Inicio</a>
-        <a href="desarrollo-web.html" class="nav-link active">Desarrollo Web</a>
+        <a href="desarrollo-web.html" class="nav-link active" aria-current="page">Desarrollo Web</a>
         <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
         <a href="sistemas-automatizacion.html" class="nav-link">Sistemas</a>
         <a href="mantenimiento-optimizacion.html" class="nav-link">Mantenimiento</a>
       </nav>
     </div>
-    <button id="carrito-btn" aria-label="Ver carrito">
+    <button id="carrito-btn" aria-label="Ver carrito de compras">
       🛒 <span id="carrito-contador">0</span>
     </button>
   </header>
 
   <main>
     <div style="text-align: center; padding-top: 30px;">
-      <h1>Servicios de Desarrollo Web.</h1>
+      <h1>Servicios de Desarrollo Web</h1>
       <p>Haz clic en un servicio para ver detalles y contratar</p>
     </div>
-    <section id="catalogo" class="catalogo"></section>
+    <section id="catalogo" class="catalogo" aria-label="Catálogo de Desarrollo Web"></section>
   </main>
 
-  <aside id="carrito" class="carrito oculto">
-    <h2>Tu Carrito.</h2>
+  <aside id="carrito" class="carrito oculto" aria-label="Carrito de compras">
+    <h2>Tu Carrito</h2>
     <div id="carrito-items"></div>
     <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
     <div class="carrito-acciones">
       <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
-      <button id="carrito-cerrar" class="btn btn-full btn-outline">Cerrar</button>
+      <button id="carrito-cerrar" class="btn btn-full btn-outline" aria-label="Cerrar carrito">Cerrar</button>
     </div>
   </aside>
 
-  <!-- El VISOR ahora está activo en esta página -->
-  <div id="visor" class="visor oculto">
+  <div id="visor" class="visor oculto" aria-modal="true" role="dialog" aria-label="Detalles del producto">
     <div class="visor-contenido">
-      <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar">&times;</button>
+      <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar ventana">&times;</button>
       <div class="visor-media">
-        <img id="visor-img" class="visor-img" alt="Vista previa">
-        <button id="visor-prev" class="visor-btn prev">◀</button>
-        <button id="visor-next" class="visor-btn next">▶</button>
+        <img id="visor-img" class="visor-img" alt="Vista previa del servicio">
+        <button id="visor-prev" class="visor-btn prev" aria-label="Imagen anterior">◀</button>
+        <button id="visor-next" class="visor-btn next" aria-label="Siguiente imagen">▶</button>
       </div>
       <div class="visor-info">
         <div id="visor-descripcion" class="visor-descripcion"></div>

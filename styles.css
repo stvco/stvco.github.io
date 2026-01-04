@@ -1,7 +1,8 @@
 /* ===================================================
-   VARIABLES GLOBALES: Colores, efectos y transiciones
+   1. VARIABLES & CONFIGURACIÓN
    =================================================== */
 :root {
+  /* Paleta de Colores */
   --primary: #4ec9ff;
   --primary-glow: rgba(78, 201, 255, 0.4);
   --accent: #92ff4e;
@@ -11,23 +12,32 @@
   --bg-dark: #0c0c0c;
   --bg-overlay: rgba(0, 0, 0, 0.9);
   --text-main: #e8e8e8;
-  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius: 0.875rem;
-  /* 14px */
+
+  /* Dimensiones y Espaciado */
   --header-height-desktop: 11.25rem;
   /* 180px */
   --header-height-mobile: 5rem;
   /* 80px */
+  --radius: 0.875rem;
+  /* 14px */
+
+  /* Transiciones */
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* CONFIGURACIÓN BASE */
-* {
+/* ===================================================
+   2. RESET & BASE
+   =================================================== */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   font-size: 100%;
-  /* 16px base */
+  /* 16px */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -40,20 +50,27 @@ body {
   line-height: 1.6;
 }
 
-/* Barra de desplazamiento */
+/* Scrollbar Personalizada */
 ::-webkit-scrollbar {
   width: 0.375rem;
   /* 6px */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background-color: #333;
   border-radius: 0.625rem;
   /* 10px */
 }
 
+h1,
+h2,
+h3 {
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
 /* ===================================================
-   EFECTO LETTERGLITCH (FONDO DINÁMICO)
+   3. BACKGROUND EFFECTS (LetterGlitch)
    =================================================== */
 .glitch-container {
   position: fixed;
@@ -73,31 +90,31 @@ body {
   height: 100%;
 }
 
-.glitch-container::before {
+.glitch-container::before,
+.glitch-container::after {
   content: "";
   position: absolute;
   inset: 0;
+}
+
+.glitch-container::before {
   background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
   z-index: 1;
 }
 
 .glitch-container::after {
-  content: "";
-  position: absolute;
-  inset: 0;
   background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
   z-index: 2;
 }
 
 /* ===================================================
-   HEADER Y NAVEGACIÓN
+   4. LAYOUT: HEADER & NAV
    =================================================== */
 header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.625rem 1.25rem;
-  /* 10px 20px */
   background: var(--bg-dark);
   border-bottom: 2px solid var(--primary);
   position: sticky;
@@ -112,7 +129,6 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  /* 15px ~= 0.93rem, rounded to 1rem */
   width: 100%;
   max-width: 1200px;
 }
@@ -133,11 +149,10 @@ header {
   transition: height 0.3s ease;
 }
 
-/* Nav Desktop */
+/* Navegación Desktop */
 .nav-principal {
   display: flex;
   gap: 1.5rem;
-  /* 25px */
 }
 
 .nav-link {
@@ -147,10 +162,8 @@ header {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.09rem;
-  /* 1.5px */
   transition: var(--transition);
   padding: 0.5rem;
-  /* Increased touch target padding */
   border-bottom: 2px solid transparent;
 }
 
@@ -160,13 +173,16 @@ header {
   border-bottom-color: var(--primary);
 }
 
-/* Menu Toggle Button (Hidden on Desktop) */
-.menu-toggle {
+/* Botones Menú Móvil */
+.menu-toggle,
+.close-menu {
   display: none;
+  /* Oculto en desktop */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  color: var(--primary);
 }
 
 .menu-toggle .bar {
@@ -178,25 +194,51 @@ header {
   transition: all 0.3s ease-in-out;
 }
 
-.close-menu {
-  display: none;
-  /* Hidden on desktop */
+/* ===================================================
+   5. COMPONENTS: BUTTONS & CART TRIGGER
+   =================================================== */
+.btn {
+  display: block;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.625rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-/* Carrito Button */
+.btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.03);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: auto;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  margin-top: 0.625rem;
+}
+
 #carrito-btn {
   position: absolute;
   right: 1.25rem;
-  /* 20px */
   top: 50%;
   transform: translateY(-50%);
   border: 2px solid var(--primary);
   background: rgba(78, 201, 255, 0.1);
   color: #fff;
   padding: 0.625rem 0.875rem;
-  /* 10px 14px */
   border-radius: 0.75rem;
-  /* 12px */
   cursor: pointer;
   transition: var(--transition);
   z-index: 101;
@@ -206,33 +248,35 @@ header {
   background: var(--primary);
   color: #000;
   padding: 0.125rem 0.4375rem;
-  /* 2px 7px */
   border-radius: 50px;
   font-weight: 800;
   font-size: 0.8rem;
   margin-left: 0.3125rem;
-  /* 5px */
 }
 
 /* ===================================================
-   CATÁLOGO Y CARDS
+   6. CATALOGO & CARDS
    =================================================== */
 .catalogo {
   display: grid;
-  /* Optimized minmax for responsiveness: 260px -> 240px to fit smaller screens better */
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.875rem;
-  /* 30px */
   padding: 2.5rem 1.25rem;
-  /* 40px 20px */
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.glass-catalog {
+  background-color: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
 }
 
 .card {
   background: var(--bg-card);
   padding: 1.25rem;
-  /* 20px */
   border-radius: var(--radius);
   transition: var(--transition);
   text-align: center;
@@ -244,7 +288,6 @@ header {
 
 .card:hover {
   transform: translateY(-0.5rem);
-  /* -8px */
   box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.6);
   border-color: #333;
 }
@@ -254,16 +297,13 @@ header {
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 0.625rem;
-  /* 10px */
   cursor: pointer;
   margin-bottom: 0.9375rem;
-  /* 15px */
   background: #000;
 }
 
 .card h3 {
-  margin: 0 0 0.625rem 0;
-  /* 10px */
+  margin-bottom: 0.625rem;
   font-size: 1.1rem;
   color: #fff;
 }
@@ -272,41 +312,23 @@ header {
   color: var(--primary);
   font-size: 1.15rem;
   font-weight: 700;
-  display: block;
-  margin-bottom: 1.25rem;
-  /* 20px */
-  min-height: 2.5em;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.precio-card:not(:empty) {
+  min-height: 2.5em;
+  margin-bottom: 1.25rem;
   line-height: 1.2;
 }
 
-/* ===================================================
-   DISEÑO ESPECÍFICO DE INICIO (CATEGORÍAS)
-   =================================================== */
-.glass-catalog {
-  background-color: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.25rem;
-  /* 20px */
-}
-
+/* Estilo específico para cards de categoría (Inicio) */
 .card-categoria {
   cursor: pointer;
   padding-bottom: 1.5625rem;
-  /* 25px */
 }
 
 .card-categoria h3 {
   color: var(--primary);
   margin-top: 0.625rem;
-  /* 10px */
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -318,19 +340,17 @@ header {
 }
 
 /* ===================================================
-   CARRITO (SIDEBAR)
+   7. CARRITO (SIDEBAR)
    =================================================== */
 .carrito {
   position: fixed;
   right: 0;
   top: 0;
   width: min(25rem, 100%);
-  /* 400px or 100% */
   height: 100%;
   background: #0a0a0a;
   z-index: 2000;
   padding: 1.875rem;
-  /* 30px */
   display: flex;
   flex-direction: column;
   border-left: 2px solid var(--primary);
@@ -340,7 +360,6 @@ header {
 
 .carrito.oculto {
   display: flex !important;
-  /* Overrule display:none to use transform */
   transform: translateX(100%);
 }
 
@@ -349,7 +368,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0.9375rem 0;
-  /* 15px */
   border-bottom: 1px solid #222;
 }
 
@@ -373,7 +391,6 @@ header {
   color: #fff;
   border: none;
   width: 2rem;
-  /* 32px - bigger touch target */
   height: 2rem;
   cursor: pointer;
   border-radius: 4px;
@@ -390,7 +407,6 @@ header {
 
 .carrito-total {
   margin: 1.5625rem 0;
-  /* 25px */
   font-size: 1.5rem;
   font-weight: 700;
   display: flex;
@@ -399,45 +415,7 @@ header {
 }
 
 /* ===================================================
-   BOTONES GENERALES
-   =================================================== */
-.btn {
-  display: block;
-  background: var(--accent);
-  color: #000;
-  border: none;
-  padding: 1rem;
-  /* Increase padding for touch */
-  border-radius: 0.625rem;
-  /* 10px */
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--transition);
-  text-align: center;
-  text-decoration: none;
-  font-size: 1rem;
-  /* Slightly larger text */
-}
-
-.btn:hover {
-  background: var(--accent-hover);
-  transform: scale(1.03);
-}
-
-.btn-full {
-  width: 100%;
-  margin-top: auto;
-}
-
-.btn-outline {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #444;
-  margin-top: 0.625rem;
-}
-
-/* ===================================================
-   VISOR (MODAL)
+   8. VISOR (MODAL)
    =================================================== */
 .visor {
   position: fixed;
@@ -460,9 +438,7 @@ header {
   width: 100%;
   max-width: 480px;
   padding: 1.875rem;
-  /* 30px */
   border-radius: 1.5rem;
-  /* 24px */
   position: relative;
   border: 1px solid #222;
   max-height: 90vh;
@@ -474,14 +450,12 @@ header {
   aspect-ratio: 1/1;
   object-fit: contain;
   border-radius: 0.9375rem;
-  /* 15px */
   background: #000;
 }
 
 .visor-miniaturas {
   display: flex;
   gap: 0.75rem;
-  /* 12px */
   justify-content: center;
   margin: 1.25rem 0;
   flex-wrap: wrap;
@@ -489,7 +463,6 @@ header {
 
 .visor-miniaturas img {
   width: 3.75rem;
-  /* 60px */
   height: 3.75rem;
   object-fit: cover;
   border-radius: 0.5rem;
@@ -511,7 +484,6 @@ header {
   color: var(--primary);
   border-radius: 50%;
   width: 3rem;
-  /* 48px - touch friendly */
   height: 3rem;
   cursor: pointer;
   display: flex;
@@ -536,10 +508,9 @@ header {
   font-size: 2.5rem;
   cursor: pointer;
   color: var(--primary);
-  border: none;
   background: none;
+  border: none;
   padding: 0.5rem;
-  /* Increase touch area */
   line-height: 1;
 }
 
@@ -556,7 +527,7 @@ header {
 }
 
 /* ===================================================
-   MEDIA QUERIES (MOBILE)
+   9. MEDIA QUERIES (RESPONSIVE)
    =================================================== */
 @media (max-width: 768px) {
   :root {
@@ -577,7 +548,6 @@ header {
 
   .header-top {
     justify-content: space-between;
-    width: 100%;
     height: 60px;
   }
 
@@ -585,12 +555,11 @@ header {
     height: 50px;
   }
 
-  /* Mobile Navigation Menu */
+  /* Menú Móvil Overlay */
   .nav-principal {
     position: fixed;
     top: 0;
     right: -100%;
-    /* Hidden off-screen right */
     width: 75%;
     max-width: 300px;
     height: 100vh;
@@ -609,17 +578,12 @@ header {
     right: 0;
   }
 
-  /* Close button inside mobile menu */
   .close-menu {
     display: block;
     position: absolute;
     top: 20px;
     right: 20px;
-    background: none;
-    border: none;
-    color: var(--primary);
     font-size: 2.5rem;
-    cursor: pointer;
   }
 
   .nav-link {
@@ -629,28 +593,22 @@ header {
     padding: 15px;
   }
 
-  /* Hamburger Menu Button Visible */
   .menu-toggle {
     display: block;
     margin-right: 60px;
-    /* Space for the cart button which is absolute */
   }
 
-  /* Adjust Cart Button position */
   #carrito-btn {
     top: 35px;
-    /* Align with header top center vertically approx */
     right: 15px;
     transform: translateY(-50%);
     padding: 8px 12px;
   }
 
-  /* Cart sidebar full width */
   .carrito {
     width: 100%;
   }
 
-  /* Modal Adjustments */
   .visor-contenido {
     padding: 20px;
     width: 95%;
@@ -662,10 +620,8 @@ header {
     top: 30%;
   }
 
-  /* Grid */
   .catalogo {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    /* Single column on very small focus or fluid */
     gap: 20px;
     padding: 20px 15px;
   }

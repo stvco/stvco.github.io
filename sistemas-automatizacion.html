@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sistemas y Automatización de procesos por STV. Control de inventarios, bases de datos y soluciones empresariales.">
     <title>Sistemas | STV</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,18 +18,27 @@
 
     <header>
         <div class="header-content">
-            <a href="index.html">
-                <img src="img/STV_logo.png" alt="Logotipo STV" class="logo-header" loading="lazy">
-            </a>
-            <nav class="nav-principal">
+            <div class="header-top">
+                <a href="index.html" aria-label="Ir a Inicio">
+                    <img src="img/STV_logo.png" alt="Logotipo Soluciones Tecnológicas Vargas" class="logo-header"
+                        loading="lazy">
+                </a>
+                <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+            <nav class="nav-principal" id="nav-principal" aria-label="Menú principal">
+                <button class="close-menu" aria-label="Cerrar menú">&times;</button>
                 <a href="index.html" class="nav-link">Inicio</a>
                 <a href="desarrollo-web.html" class="nav-link">Desarrollo Web</a>
                 <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
-                <a href="sistemas-automatizacion.html" class="nav-link active">Sistemas</a>
+                <a href="sistemas-automatizacion.html" class="nav-link active" aria-current="page">Sistemas</a>
                 <a href="mantenimiento-optimizacion.html" class="nav-link">Mantenimiento</a>
             </nav>
         </div>
-        <button id="carrito-btn" aria-label="Ver carrito">
+        <button id="carrito-btn" aria-label="Ver carrito de compras">
             🛒 <span id="carrito-contador">0</span>
         </button>
     </header>
@@ -37,27 +48,26 @@
             <h1>Sistemas y Automatización</h1>
             <p>Haz clic en un servicio para ver detalles y contratar</p>
         </div>
-        <section id="catalogo" class="catalogo"></section>
+        <section id="catalogo" class="catalogo" aria-label="Catálogo de Sistemas"></section>
     </main>
 
-    <aside id="carrito" class="carrito oculto">
+    <aside id="carrito" class="carrito oculto" aria-label="Carrito de compras">
         <h2>Tu Carrito</h2>
         <div id="carrito-items"></div>
         <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
         <div class="carrito-acciones">
             <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
-            <button id="carrito-cerrar" class="btn btn-full btn-outline">Cerrar</button>
+            <button id="carrito-cerrar" class="btn btn-full btn-outline" aria-label="Cerrar carrito">Cerrar</button>
         </div>
     </aside>
 
-    <!-- El VISOR ahora está activo en esta página -->
-    <div id="visor" class="visor oculto">
+    <div id="visor" class="visor oculto" aria-modal="true" role="dialog" aria-label="Detalles del producto">
         <div class="visor-contenido">
-            <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar">&times;</button>
+            <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar ventana">&times;</button>
             <div class="visor-media">
-                <img id="visor-img" class="visor-img" alt="Vista previa">
-                <button id="visor-prev" class="visor-btn prev">◀</button>
-                <button id="visor-next" class="visor-btn next">▶</button>
+                <img id="visor-img" class="visor-img" alt="Vista previa del servicio">
+                <button id="visor-prev" class="visor-btn prev" aria-label="Imagen anterior">◀</button>
+                <button id="visor-next" class="visor-btn next" aria-label="Siguiente imagen">▶</button>
             </div>
             <div class="visor-info">
                 <div id="visor-descripcion" class="visor-descripcion"></div>
