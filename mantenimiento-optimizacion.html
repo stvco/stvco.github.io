@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Servicios de Mantenimiento y Optimización de PCs y Laptops. Limpieza, actualización de hardware y software por STV.">
+    <title>Mantenimiento | STV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="header-top">
+                <a href="index.html" aria-label="Ir a Inicio">
+                    <img src="img/STV_logo.png" alt="Logotipo Soluciones Tecnológicas Vargas" class="logo-header"
+                        loading="eager">
+                </a>
+                <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+            <nav class="nav-principal" id="nav-principal" aria-label="Menú principal">
+                <button class="close-menu" aria-label="Cerrar menú">&times;</button>
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="desarrollo-web.html" class="nav-link">Desarrollo Web</a>
+                <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
+                <a href="sistemas-automatizacion.html" class="nav-link">Sistemas</a>
+                <a href="mantenimiento-optimizacion.html" class="nav-link active" aria-current="page">Mantenimiento</a>
+            </nav>
+        </div>
+        <button id="carrito-btn" aria-label="Ver carrito de compras">
+            🛒 <span id="carrito-contador">0</span>
+        </button>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <h1>Mantenimiento y Optimización</h1>
+            <p>Haz clic en un servicio para ver detalles y contratar</p>
+        </div>
+        <section id="catalogo" class="catalogo" aria-label="Catálogo de Mantenimiento"></section>
+    </main>
+
+    <aside id="carrito" class="carrito oculto" aria-label="Carrito de compras">
+        <h2>Tu Carrito</h2>
+        <div id="carrito-items"></div>
+        <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
+        <div class="carrito-acciones">
+            <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
+            <button id="carrito-cerrar" class="btn btn-full btn-outline" aria-label="Cerrar carrito">Cerrar</button>
+        </div>
+    </aside>
+
+    <div id="visor" class="visor oculto" aria-modal="true" role="dialog" aria-label="Detalles del producto">
+        <div class="visor-contenido">
+            <button id="visor-cerrar" class="visor-cerrar" aria-label="Cerrar ventana">&times;</button>
+            <div class="visor-media">
+                <img id="visor-img" class="visor-img" alt="Vista previa del servicio">
+                <button id="visor-prev" class="visor-btn prev" aria-label="Imagen anterior">◀</button>
+                <button id="visor-next" class="visor-btn next" aria-label="Siguiente imagen">▶</button>
+            </div>
+            <div class="visor-info">
+                <div id="visor-descripcion" class="visor-descripcion"></div>
+                <div id="visor-stock" class="visor-stock"></div>
+                <div id="visor-miniaturas" class="visor-miniaturas"></div>
+                <button id="btn-agregar-carrito-float" class="btn btn-full">➕ Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

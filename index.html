@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="STV - Soluciones Tecnológicas Vargas. Catálogo de servicios tecnológicos: Desarrollo web, Soporte técnico, Mantenimiento y Automatización.">
+  <title>STV | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="header-top">
+        <a href="index.html" class="logo-link" aria-label="Ir a Inicio">
+          <img src="img/STV_logo.png" alt="Logotipo Soluciones Tecnológicas Vargas" class="logo-header" loading="eager">
+        </a>
+        <button class="menu-toggle" aria-label="Abrir menú de navegación">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+      <nav class="nav-principal" id="nav-principal" aria-label="Menú principal">
+        <button class="close-menu" aria-label="Cerrar menú">&times;</button>
+        <a href="index.html" class="nav-link active" aria-current="page">Inicio</a>
+        <a href="desarrollo-web.html" class="nav-link">Desarrollo Web</a>
+        <a href="soporte-reparacion.html" class="nav-link">Soporte</a>
+        <a href="sistemas-automatizacion.html" class="nav-link">Sistemas</a>
+        <a href="mantenimiento-optimizacion.html" class="nav-link">Mantenimiento</a>
+      </nav>
+    </div>
+    <button id="carrito-btn" aria-label="Ver carrito de compras">
+      🛒 <span id="carrito-contador">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="home-hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Soluciones Tecnológicas Vargas</p>
+        <h1 id="hero-title">Tecnología que impulsa <em>tu siguiente paso.</em></h1>
+        <p class="hero-description">Creamos, reparamos y optimizamos soluciones digitales para que tu negocio y tus equipos funcionen mejor.</p>
+        <div class="hero-actions">
+          <a class="btn hero-primary" href="#servicios">Explorar servicios <span aria-hidden="true">&#8594;</span></a>
+          <a class="hero-contact" href="https://wa.me/524776755956?text=Hola%20STV%2C%20me%20gustar%C3%ADa%20conocer%20sus%20servicios." target="_blank" rel="noopener noreferrer">Hablemos por WhatsApp <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="hero-proof"><span class="proof-mark" aria-hidden="true">&#10003;</span> Atención cercana, soluciones a tu medida</div>
+      </div>
+      <div class="hero-visual" aria-label="Soluciones tecnológicas para personas y negocios" role="img">
+        <div class="visual-topline"><span>STV / TECNOLOGÍA A TU MEDIDA</span><span class="live-dot"></span></div>
+        <img src="img/sistemas.png" alt="" class="hero-image">
+        <div class="visual-caption"><span class="caption-index">01 / 04</span><span>Ideas que se convierten en soluciones.</span></div>
+        <div class="visual-stamp" aria-hidden="true">STV<br><span>TECH</span></div>
+      </div>
+    </section>
+
+    <section class="services-section" id="servicios" aria-labelledby="services-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">UN SOLO EQUIPO, MUCHAS SOLUCIONES</p><h2 id="services-title">¿Qué necesitas resolver?</h2></div>
+        <p>Desde una idea nueva hasta ese equipo que necesita volver a rendir.</p>
+      </div>
+      <section id="catalogo" class="catalogo" aria-label="Áreas de servicio"></section>
+    </section>
+
+    <section class="capabilities" aria-label="Especialidades de STV">
+      <div class="capability"><span class="capability-number">01</span><span>Diseño y desarrollo digital</span></div>
+      <div class="capability"><span class="capability-number">02</span><span>Soporte técnico confiable</span></div>
+      <div class="capability"><span class="capability-number">03</span><span>Sistemas y automatización</span></div>
+      <div class="capability"><span class="capability-number">04</span><span>Mantenimiento preventivo</span></div>
+    </section>
+
+    <section class="contact-band" aria-label="Contacto">
+      <div><p class="eyebrow">¿TIENES UN PROYECTO EN MENTE?</p><h2>Hagamos que funcione.</h2></div>
+      <a class="btn contact-button" href="https://wa.me/524776755956?text=Hola%20STV%2C%20quiero%20platicar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer">Cuéntanos tu idea <span aria-hidden="true">&#8599;</span></a>
+    </section>
+  </main>
+
+  <aside id="carrito" class="carrito oculto" aria-label="Carrito de compras">
+    <h2>Tu Carrito</h2>
+    <div id="carrito-items"></div>
+    <div class="carrito-total">Total: <span id="carrito-total">$0</span></div>
+    <div class="carrito-acciones">
+      <button id="carrito-comprar" class="btn btn-full">Comprar por WhatsApp</button>
+      <button id="carrito-cerrar" class="btn btn-full btn-outline" aria-label="Cerrar carrito">Cerrar</button>
+    </div>
+  </aside>
+
+  <!-- Botón flotante de reporte de problema -->
+  <a href="https://wa.me/524776755956?text=Buen%20d%C3%ADa%20STVCO%2C%20me%20parece%20haber%20encontrado%20un%20problema%20en%20un%20momento%20te%20enviar%C3%A9%20la%20informaci%C3%B3n." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="report-problem-btn" 
+     id="report-problem-btn" 
+     aria-label="Reportar un problema por WhatsApp">
+    <span class="report-circle" aria-hidden="true">!</span>
+    <span class="report-text">¿Encontraste algún problema? Cuéntanos</span>
+  </a>
+
+</body>
+
+</html>

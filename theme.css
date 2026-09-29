@@ -1,0 +1,316 @@
+:root {
+  color-scheme: light;
+}
+
+.header-top {
+  gap: 1rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.45rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #dce5e1;
+  border-radius: 999px;
+  background: #f7f9f6;
+  color: #52645d;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: #a9c8bb;
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(8, 127, 140, 0.28);
+  outline-offset: 3px;
+}
+
+.theme-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.theme-icon-sun {
+  color: #a46b0b;
+}
+
+.theme-icon-moon {
+  color: #687b73;
+}
+
+.theme-switch {
+  position: relative;
+  width: 2.25rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: #dce7e0;
+  transition: background-color 0.25s ease;
+}
+
+.theme-switch-knob {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(20, 45, 38, 0.2);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #66c9c4;
+  --primary-glow: rgba(102, 201, 196, 0.18);
+  --accent: #c5f36a;
+  --accent-hover: #d3ff82;
+  --bg-body: #111a18;
+  --bg-card: #1b2825;
+  --bg-dark: #141f1d;
+  --bg-overlay: rgba(4, 11, 10, 0.9);
+  --text-main: #e7efeb;
+}
+
+:root[data-theme="dark"] body {
+  background-color: #111a18;
+  background-image: linear-gradient(rgba(102, 201, 196, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 201, 196, 0.035) 1px, transparent 1px);
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] header {
+  border-bottom-color: #2b3d38;
+  background: rgba(20, 31, 29, 0.96);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  border-color: #39514b;
+  background: #1c2a27;
+  color: #dce8e2;
+}
+
+:root[data-theme="dark"] .theme-switch {
+  background: #087f8c;
+}
+
+:root[data-theme="dark"] .theme-switch-knob {
+  transform: translateX(1.05rem);
+}
+
+:root[data-theme="dark"] .nav-link {
+  color: #b2c2bc;
+}
+
+:root[data-theme="dark"] .nav-link:hover,
+:root[data-theme="dark"] .nav-link.active {
+  color: #a6e5dc;
+  background: #243a35;
+}
+
+:root[data-theme="dark"] #carrito-btn {
+  border-color: #39514b;
+  background: #1b2926;
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .home-hero h1,
+:root[data-theme="dark"] .section-heading h2,
+:root[data-theme="dark"] .contact-band h2,
+:root[data-theme="dark"] .page-heading {
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .home-hero h1 em,
+:root[data-theme="dark"] .eyebrow,
+:root[data-theme="dark"] .card-categoria h3::after,
+:root[data-theme="dark"] .precio-card {
+  color: #70d0ca;
+}
+
+:root[data-theme="dark"] .hero-description,
+:root[data-theme="dark"] .section-heading > p,
+:root[data-theme="dark"] .page-heading p,
+:root[data-theme="dark"] .hero-proof {
+  color: #aabbb4;
+}
+
+:root[data-theme="dark"] .hero-contact {
+  color: #d0e1da;
+  text-decoration-color: #6e8e82;
+}
+
+:root[data-theme="dark"] .proof-mark {
+  background: #30472b;
+  color: #d1f2a0;
+}
+
+:root[data-theme="dark"] .hero-visual {
+  background: #102c2a;
+  box-shadow: 18px 18px 0 #263a34;
+}
+
+:root[data-theme="dark"] .services-section {
+  border-color: #2b3a36;
+  background: #17221f;
+}
+
+:root[data-theme="dark"] .card {
+  border-color: #34443f;
+  background: #1d2a27;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme="dark"] .card:hover {
+  border-color: #547b70;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme="dark"] .card-categoria .thumbnail,
+:root[data-theme="dark"] .card:not(.card-categoria) .thumbnail,
+:root[data-theme="dark"] .visor-img {
+  background: #263733;
+}
+
+:root[data-theme="dark"] .card-categoria h3,
+:root[data-theme="dark"] .card:not(.card-categoria) h3 {
+  color: #e0ebe5;
+}
+
+:root[data-theme="dark"] .capability {
+  color: #cad8d2;
+}
+
+:root[data-theme="dark"] .capability + .capability {
+  border-color: #34443f;
+}
+
+:root[data-theme="dark"] .contact-band {
+  border-left-color: #70d0ca;
+  background: #22332e;
+}
+
+:root[data-theme="dark"] .carrito {
+  border-left-color: #66c9c4;
+  background: #17221f;
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .carrito > h2,
+:root[data-theme="dark"] .item-nombre,
+:root[data-theme="dark"] .carrito-total {
+  color: #a6e5dc;
+}
+
+:root[data-theme="dark"] .carrito-item {
+  border-bottom-color: #2d3b37;
+}
+
+:root[data-theme="dark"] .item-precio,
+:root[data-theme="dark"] .carrito-vacio {
+  color: #b5c4be;
+}
+
+:root[data-theme="dark"] .btn-outline {
+  border-color: #40534c;
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .btn-qty {
+  background: #34443f;
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .visor-contenido {
+  border-color: #354640;
+  background: #1a2724;
+  color: #e7efeb;
+}
+
+:root[data-theme="dark"] .visor-cerrar,
+:root[data-theme="dark"] .visor-btn {
+  border-color: #70d0ca;
+  color: #a6e5dc;
+}
+
+:root[data-theme="dark"] .nav-principal {
+  background: #17221f;
+}
+
+:root[data-theme="dark"] .menu-toggle .bar {
+  background-color: #d9e9e1;
+}
+
+:root[data-theme="dark"] .close-menu {
+  color: #70d0ca;
+}
+
+body,
+header,
+.services-section,
+.card,
+.contact-band,
+.carrito,
+.visor-contenido {
+  transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+@media (max-width: 980px) {
+  .header-top {
+    gap: 0.65rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 68px;
+    min-width: 68px;
+    min-height: 2.2rem;
+    gap: 0.18rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .theme-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .theme-switch {
+    width: 1.55rem;
+  }
+
+  .theme-switch-knob {
+    top: 0.225rem;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  :root[data-theme="dark"] .theme-switch-knob {
+    transform: translateX(0.5rem);
+  }
+
+  .menu-toggle {
+    margin-right: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
